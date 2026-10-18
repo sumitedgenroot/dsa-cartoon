@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #1f1d2b;
+  --color-ink-soft: #4a4760;
+  --color-muted: #77738c;
+  --color-line: #e7e4f0;
+  --color-paper: #ffffff;
+  --color-cream: #fffdf7;
+
+  --color-sun: #ffd84d;
+  --color-sun-soft: #fff4c2;
+  --color-bubble: #ff9ec4;
+  --color-bubble-soft: #ffe1ee;
+  --color-sky: #8ecbff;
+  --color-sky-soft: #ddf0ff;
+  --color-mint: #8fe3a8;
+  --color-mint-soft: #dcf8e5;
+  --color-grape: #c3b1ff;
+  --color-grape-soft: #ece6ff;
+  --color-peach: #ffb37a;
+  --color-peach-soft: #ffe8d6;
+  --color-cherry: #ff7a7a;
+  --color-cherry-soft: #ffe0e0;
+
+  --font-display: var(--font-fredoka), ui-rounded, system-ui, sans-serif;
+  --font-hand: var(--font-patrick), "Comic Sans MS", cursive;
+  --font-mono: var(--font-jetbrains), ui-monospace, Consolas, monospace;
+  --font-sans: var(--font-fredoka), ui-rounded, system-ui, sans-serif;
+
+  --animate-wiggle: wiggle 2.4s ease-in-out infinite;
+  --animate-float: float 3.5s ease-in-out infinite;
+  --animate-pop: pop 0.35s ease-out;
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes pop {
+    0% { transform: scale(0.85); }
+    60% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #ffffff;
+  background-image: radial-gradient(#ebe8f3 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+  color: var(--color-ink);
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: var(--color-sun);
+}
+
+@layer components {
+  .card {
+    background: #fff;
+    border: 2.5px solid var(--color-ink);
+    border-radius: 18px;
+    box-shadow: 4px 4px 0 var(--color-ink);
+  }
+  .card-flat {
+    background: #fff;
+    border: 2px solid var(--color-ink);
+    border-radius: 14px;
+  }
+  .card-hover {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card-hover:hover {
+    transform: translate(-2px, -2px) rotate(-0.4deg);
+    box-shadow: 7px 7px 0 var(--color-ink);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    border: 2.5px solid var(--color-ink);
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 3px 3px 0 var(--color-ink);
+    transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.15s;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 var(--color-ink);
+  }
+  .btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--color-ink);
+  }
+  .btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 3px 3px 0 var(--color-ink);
+  }
+  .btn-sm {
+    padding: 0.3rem 0.7rem;
+    font-size: 0.875rem;
+    border-width: 2px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 0 var(--color-ink);
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.1rem 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: 2px solid var(--color-ink);
+    border-radius: 999px;
+    background: #fff;
+    white-space: nowrap;
+  }
+  .wobbly {
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  }
+  .scribble-underline {
+    background-image: linear-gradient(transparent 62%, var(--color-sun) 62%, var(--color-sun) 92%, transparent 92%);
+    padding: 0 0.15em;
+  }
+  .input {
+    border: 2px solid var(--color-ink);
+    border-radius: 10px;
+    padding: 0.4rem 0.7rem;
+    background: #fff;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    outline: none;
+    width: 100%;
+  }
+  .input:focus {
+    box-shadow: 3px 3px 0 var(--color-grape);
+  }
+  .code-scroll::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+  }
+  .code-scroll::-webkit-scrollbar-thumb {
+    background: #d9d5e6;
+    border-radius: 8px;
+  }
+  .prose-doodle p {
+    line-height: 1.7;
+  }
+}
+
+/* Syntax colors (light) */
+.tok-kw { color: #8b3fd9; font-weight: 600; }
+.tok-type { color: #0b7fb3; }
+.tok-str { color: #c2410c; }
+.tok-num { color: #0f8a5f; }
+.tok-com { color: #8f8aa3; font-style: italic; }
+.tok-fn { color: #2251c7; }
+.tok-pre { color: #b5179e; }
